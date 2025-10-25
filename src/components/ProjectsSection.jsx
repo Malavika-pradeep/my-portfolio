@@ -12,7 +12,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "Orbit Analytics Dashboard",
+    title: "Wildlife Poaching Prevention",
     description:
       "Interactive analytics dashboard with data visualization and filtering capabilities.",
     image: "/projects/project2.png",
@@ -22,7 +22,7 @@ const projects = [
   },
   {
     id: 3,
-    title: "E-commerce Platform",
+    title: "RAG-based ChatBot",
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
     image: "/projects/project3.png",
