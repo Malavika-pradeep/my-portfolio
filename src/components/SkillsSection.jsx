@@ -1,86 +1,96 @@
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
-const skills = [
-  // Core Skills
-  { name: "Python", category: "coreskills" },
-  { name: "Machine Learning", category: "coreskills" },
-  { name: "Computer Vision", category: "coreskills" },
-  { name: "Deep Learning", category: "coreskills" },
-  { name: "NLP", category: "coreskills" },
-  { name: "Cognitive Computing", category: "coreskills" },
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+import { Code, Database, Globe, Smartphone, Wrench, Cloud, Award, FlaskConical, Palette, Server, Brain, Rocket, Box, Sparkles } from 'lucide-react';
 
-  // Frameworks
-  { name: "PyTorch",  category: "frameworks" },
-  { name: "Tensorflow",  category: "frameworks" },
-  { name: "Sci-kit", category: "frameworks" },
-  { name: "Hugging Face Transformers", category: "frameworks" },
-  { name: "Langraph-LangChain",  category: "frameworks" },
+const skills = {
+  'Programming Languages': [ 'Python', 'C', 'C++'],
+  'Core Technologies': ['Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP'],
+  'AI Frame works': ['TensorFlow', 'PyTorch', 'Scikit-learn'],
+  'DevOps & Tools': ['Git', 'Docker'],
+  'Cloud & Deployment': ['Vercel', 'Hugging Face'],
+  'UI/UX & Design': ['Figma'],
+  'Other Tools': ['VS Code', 'Postman', 'FastAPI']
+};
 
-  // Tools
-  { name: "Git/GitHub", category: "tools" },
-  { name: "Docker", category: "tools" },
-  { name: "Figma", category: "tools" },
-  { name: "VS Code", category: "tools" },
-];
-
-const categories = ["all", "coreskills", "frameworks", "tools"];
+const skillIcons = {
+  'Programming Languages': Code,
+  'Frontend Development': Palette,
+  'Backend Development': Server,
+  'Mobile Development': Smartphone,
+  'Database Management': Database,
+  'AI/ML Technologies': Brain,
+  'DevOps & Tools': Wrench,
+  'Testing & Automation': FlaskConical,
+  'Cloud & Deployment': Rocket,
+  '3D & Animation': Box,
+  'UI/UX & Design': Sparkles,
+  'Other Tools': Award,
+};
 
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
   return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
-        </h2>
+    <section id="skills" className="py-20 bg-white/80 dark:bg-white/5 backdrop-blur-sm" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Skills & Expertise</h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-blue-600 mx-auto"></div>
+          </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
-              )}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+          {/* Skills Grid - 4 columns for uniform layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {Object.entries(skills).map(([category, skillList], index) => {
+              const Icon = skillIcons[category] || Code;
+              return (
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, y: 20, rotateX: -15 }}
+                  animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 20, rotateX: -15 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -10, scale: 1.03, rotateY: 5, rotateX: 5 }}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl card-hover border border-gray-200 dark:border-gray-700 h-full min-h-[300px] flex flex-col"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="flex items-center gap-3 mb-4 flex-shrink-0">
+                    <motion.div
+                      className="p-3 bg-gradient-to-br from-purple-500 to-purple-500 rounded-xl shadow-lg"
+                      whileHover={{ scale: 1.2, rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Icon className="w-7 h-7 text-white" />
+                    </motion.div>
+                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+                      {category}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2 flex-grow content-start">
+                    {skillList.map((skill, idx) => (
+                      <motion.span
+                        key={idx}
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer"
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
-            >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + " " }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+          
+        </motion.div>
       </div>
     </section>
   );
-};
+}
