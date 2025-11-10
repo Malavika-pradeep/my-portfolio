@@ -19,7 +19,7 @@ const ScrambledText = ({
     interval = 40, 
     scrambleSteps = 10 
 }) => {
-    const CHARS = "ABCDJKLMNmnopqrstuyz!@#$%^&*";
+    const CHARS = "ArtificialIntelligenceMachineLearning!@#$";
     const [displayText, setDisplayText] = useState('');
     const targetText = initialText.trim();
     

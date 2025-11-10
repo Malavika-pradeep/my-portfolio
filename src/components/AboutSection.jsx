@@ -1,84 +1,103 @@
-import { Briefcase, Code, User } from "lucide-react";
+import { useEffect, useState } from "react";
+import { FaInstagram, FaLinkedin, FaDiscord } from "react-icons/fa";
 
 export const AboutSection = () => {
+  const [time, setTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const options = { hour: "2-digit", minute: "2-digit"};
+      const istTime = new Date().toLocaleTimeString("en-GB", {
+        ...options,
+        timeZone: "Asia/Kolkata",
+      });
+      setTime(istTime);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="about" className="py-24 px-4 relative">
-      {" "}
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-primary"> Me</span>
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold">
-              AI Developer
-            </h3>
-
-            <p className="text-muted-foreground">
-              With a strong foundation in artificial intelligence and machine learning, I specialize in developing intelligent systems that bridge data-driven insights with real-world impact.
-            </p>
-
-            <p className="text-muted-foreground">
-              Passionate about innovation, I focus on building efficient, explainable, and scalable AI solutions that push the boundaries of automation and cognition.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
-                Get In Touch
-              </a>
-
-              <a
-                href=""
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
+    <section id="about" className="py-24 px-6 bg-black text-white">
+      <div className="container mx-auto max-w-6xl grid md:grid-cols-2 gap-12 items-center">
+        {/* Left Side - Image */}
+        <div className="flex justify-center">
+          <div className="relative w-[320px] h-[420px] rounded-xl overflow-hidden shadow-2xl">
+            {/* Replace with your image path */}
+            <img
+              src="public/project/wildlife.png"
+              alt="Profile"
+              className="object-cover w-full h-full grayscale hover:grayscale-0 transition duration-500"
+            />
+            <div className="absolute bottom-6 left-6 text-white space-y-2">
+              <h2 className="text-3xl font-signature">Malavika Pradeep</h2>
+              <p className="uppercase tracking-wide text-sm">
+                AI Engineer and Researcher
+              </p>
             </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 gap-6">
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Code className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Machine Learning</h4>
-                  <p className="text-muted-foreground">
-                    Designing and developing intelligent, data-driven models and applications using modern AI frameworks and tools.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <User className="h-6 w-6 text-primary" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Deep Learning</h4>
-                  <p className="text-muted-foreground">
-                    Designing and implementing advanced neural network architectures to solve complex real-world problems
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
-                </div>
+  {/* Right Side - Text Content */}
+  <div className="space-y-6 leading-relaxed text-left">
+          <p>
+            Renowned for my <span className="font-semibold">innovative approach</span> to AI and cognitive computing, 
+            I began my journey blending data science with creativity, building 
+            <span className="font-semibold"> intelligent and explainable AI systems</span> that drive real-world impact.
+          </p>
 
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg">Computer Vision</h4>
-                  <p className="text-muted-foreground">
-                    Developing intelligent systems to interpret and understand visual information from the world.
-                  </p>
-                </div>
-              </div>
-            </div>
+          <p>
+            My research-driven design philosophy enables me to 
+            <span className="font-semibold"> lead interdisciplinary projects</span> in healthcare, cognition, and 
+            brain–heart interaction, consistently advancing the boundaries of 
+            <span className="font-semibold"> multimodal AI</span> and computational neuroscience.
+          </p>
+
+          <p>
+            Currently, I collaborate on <span className="font-semibold">research-based and contract projects</span>, 
+            pushing the frontiers of <span className="font-semibold">AI-driven analysis, signal processing, and human–AI symbiosis.</span>
+          </p>
+
+          <div>
+            <p className="text-lg font-medium mt-8">
+              Based and working in <span className="font-semibold">India 🇮🇳</span>
+            </p>
+            <p className="text-3xl font-bold mt-2">{time} <span className="text-sm">(IST)</span></p>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex space-x-4 mt-8 text-2xl">
+            <a
+              href="#"
+              className="hover:text-primary transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <FaInstagram className="inline" aria-hidden="true" />
+            </a>
+
+            <a
+              href="#"
+              className="hover:text-primary transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin className="inline" aria-hidden="true" />
+            </a>
+
+            <a
+              href="#"
+              className="hover:text-primary transition"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Discord"
+            >
+              <FaDiscord className="inline" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>

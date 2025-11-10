@@ -5,8 +5,7 @@ const projects = [
     id: 1,
     title: "Computational Model for Brain-Heart Analysis",
     description: "",
-    image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
+    tags: ["Pytorch", "Neurokit", "MNE"],
     demoUrl: "#",
     githubUrl: "#",
   },
@@ -15,18 +14,16 @@ const projects = [
     title: "Wildlife Poaching Prevention",
     description:
       "Interactive analytics dashboard with data visualization and filtering capabilities.",
-    image: "/projects/project2.png",
-    tags: ["TypeScript", "D3.js", "Next.js"],
+    tags: ["Computer Vision", "Pytorch"],
     demoUrl: "#",
     githubUrl: "#",
   },
   {
     id: 3,
-    title: "RAG-based ChatBot",
+    title: "RAG-based Nuritional Chatbot",
     description:
       "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
-    tags: ["React", "Node.js", "Stripe"],
+    tags: ["Supabase", "Lovable", "Python"],
     demoUrl: "#",
     githubUrl: "#",
   },
@@ -47,23 +44,16 @@ export const ProjectsSection = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, key) => (
+          {projects.map((project) => (
             <div
-              key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              key={project.id}
+              className="group bg-card rounded-lg shadow-xs card-hover"
             >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
               <div className="p-6">
+                {/* Images removed: minimal project card */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                    <span key={`${project.id}-${tag}`} className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
                       {tag}
                     </span>
                   ))}
