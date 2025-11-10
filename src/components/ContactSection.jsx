@@ -1,16 +1,10 @@
-import {
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-  Twitch,
-  Twitter,
-} from "lucide-react";
+import { Send } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import Lottie from "lottie-react";
+import loaderCat from "@/assets/Loadercat.json";
+
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -41,75 +35,31 @@ export const ContactSection = () => {
           I'm always open to discussing new opportunities.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8 bg-white/10 border border-white/20 backdrop-blur-sm p-6 rounded-lg">
-            <h3 className="text-2xl font-semibold mb-6 text-center">
-              {" "}
-              Contact Information
+        <div className="flex flex-col md:flex-row items-start gap-8">
+          <div className="w-full md:w-1/2 flex flex-col items-center justify-center space-y-6">
+            <h3 className="text-3xl font-bold text-center text-purple tracking-tight">
+              Meet My <span className="text-purple-400">Cat</span> 🐾
             </h3>
+            <p className="text-purple-700 text-center text-sm md:text-base max-w-sm leading-relaxed">
+              Always curious, sometimes sleepy, and constantly judging my code.
+            </p>
 
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-purple-100 transition-colors">
-                  <Mail className="h-6 w-6 text-muted-foreground group-hover:text-purple-500 transition-colors" />{" "}
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium text-muted-foreground group-hover:text-purple-500 transition-colors"> Email</h4>
-                  <a
-                    href="mailto:hello@gmail.com"
-                    className="text-muted-foreground group-hover:text-purple-500 hover:text-purple-500 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm"
-                  >
-                    malavikapradeep2001@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-purple-100 transition-colors">
-                  <Phone className="h-6 w-6 text-muted-foreground group-hover:text-purple-500 transition-colors" />{" "}
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium text-muted-foreground group-hover:text-purple-500 transition-colors"> Phone</h4>
-                  <a
-                    href="tel:+11234567890"
-                    className="text-muted-foreground group-hover:text-purple-500 hover:text-purple-500 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm"
-                  >
-                    +91 (790) 238-3530
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-purple-100 transition-colors">
-                  <MapPin className="h-6 w-6 text-muted-foreground group-hover:text-purple-500 transition-colors" />{" "}
-                </div>
-                <div className="text-left">
-                  <h4 className="font-medium text-muted-foreground group-hover:text-purple-500 transition-colors"> Location</h4>
-                  <span tabIndex={0} className="text-muted-foreground group-hover:text-purple-500 hover:text-purple-500 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm">
-                    Thiruvananthapuram, Kerala
-                  </span>
-                </div>
-              </div>
+            {/* Lottie cat animation (falls back gracefully if asset missing) */}
+            <div className="w-40 h-40 md:w-56 md:h-56 flex items-center justify-center rounded-full bg-white border border-white/10 shadow-inner">
+              <Lottie
+                animationData={loaderCat}
+                loop={true}
+                style={{ width: '100%', height: '100%' }}
+                aria-label="cat animation"
+              />
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-medium mb-4"> Connect With Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm">
-                  <Linkedin />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm">
-                  <Twitter />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm">
-                  <Instagram />
-                </a>
-                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitch" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 rounded-sm">
-                  <Twitch />
-                </a>
-              </div>
-            </div>
+            <p className="text-sm text-muted-foreground text-center">
+              A little cat taking a grooming break — just for fun!
+            </p>
           </div>
 
-          <div className="bg-card p-8 rounded-lg shadow-xs">
+          <div className="w-full md:w-1/2 bg-card p-8 rounded-lg shadow-xs">
             <h3 className="text-2xl font-semibold mb-6"> Send a Message</h3>
 
             <form className="space-y-6" onSubmit={handleSubmit}>

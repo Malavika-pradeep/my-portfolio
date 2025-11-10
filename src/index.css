@@ -214,3 +214,75 @@
     animation-duration: 0.8s;
     animation-timing-function: ease-out;
 }
+
+/* Animated cat styles */
+.cat-container {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cat-svg {
+  width: 160px;
+  height: 160px;
+  overflow: visible;
+  display: block;
+}
+
+.cat-ear.left, .cat-ear.right {
+  transform-origin: center bottom;
+  animation: ear-flick 4s ease-in-out infinite;
+  opacity: 0.98;
+}
+
+.cat-eye {
+  transform-origin: center center;
+}
+
+.cat-paw {
+  transform-origin: center center;
+}
+
+.left-paw {
+  animation: paw-up 2s ease-in-out infinite;
+}
+.right-paw {
+  animation: paw-idle 2.2s ease-in-out infinite;
+}
+
+.cat-tongue {
+  transform-origin: center top;
+  animation: tongue-lick 2s cubic-bezier(.22,.9,.35,1) infinite;
+}
+
+@keyframes paw-up {
+  0% { transform: translateY(0) rotate(0deg); }
+  20% { transform: translateY(-26px) rotate(-6deg); }
+  40% { transform: translateY(-22px) rotate(-4deg); }
+  60% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes paw-idle {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes tongue-lick {
+  0% { transform: translateY(8px) scaleY(0.6); opacity: 0.95; }
+  25% { transform: translateY(-12px) scaleY(1); opacity: 1; }
+  45% { transform: translateY(2px) scaleY(0.8); }
+  100% { transform: translateY(8px) scaleY(0.6); opacity: 0.95; }
+}
+
+@keyframes ear-flick {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-4deg); }
+  60% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* make sure SVG remains crisp on dark/light backgrounds */
+.cat-head, .cat-paw { mix-blend-mode: normal; }

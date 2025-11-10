@@ -1,96 +1,105 @@
-
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { Code, Database, Globe, Smartphone, Wrench, Cloud, Award, FlaskConical, Palette, Server, Brain, Rocket, Box, Sparkles } from 'lucide-react';
-
-const skills = {
-  'Programming Languages': [ 'Python', 'C', 'C++'],
-  'Core Technologies': ['Machine Learning', 'Deep Learning', 'Computer Vision', 'NLP'],
-  'AI Frame works': ['TensorFlow', 'PyTorch', 'Scikit-learn'],
-  'DevOps & Tools': ['Git', 'Docker'],
-  'Cloud & Deployment': ['Vercel', 'Hugging Face'],
-  'UI/UX & Design': ['Figma'],
-  'Other Tools': ['VS Code', 'Postman', 'FastAPI']
-};
-
-const skillIcons = {
-  'Programming Languages': Code,
-  'Frontend Development': Palette,
-  'Backend Development': Server,
-  'Mobile Development': Smartphone,
-  'Database Management': Database,
-  'AI/ML Technologies': Brain,
-  'DevOps & Tools': Wrench,
-  'Testing & Automation': FlaskConical,
-  'Cloud & Deployment': Rocket,
-  '3D & Animation': Box,
-  'UI/UX & Design': Sparkles,
-  'Other Tools': Award,
-};
+    import { motion } from "framer-motion";
+import * as SiIcons from "react-icons/si";
 
 export const SkillsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const skillCategories = [
+    {
+      title: "Prog. Languages",
+      skills: [
+        { name: "Python", icon: SiIcons.SiPython, color: "#3776AB" },
+        { name: "C", icon: SiIcons.SiC, color: "#A8B9CC" },
+        { name: "C++", icon: SiIcons.SiCplusplus, color: "#00599C" },
+      ],
+    },
+    {
+      title: "Frameworks",
+      skills: [
+        { name: "PyTorch", icon: SiIcons.SiPytorch, color: "#EE4C2C" },
+        { name: "OpenCV", icon: SiIcons.SiOpencv, color: "#5C3EE8" },
+        { name: "TensorFlow", icon: SiIcons.SiTensorflow, color: "#FF6F00" },
+        { name: "spaCy", icon: SiIcons.SiSpacy, color: "#09A3D5" },
+        { name: "Scikit-learn", icon: SiIcons.SiScikitlearn, color: "#F7931E" },
+      ],
+    },
+    {
+      title: "Tools",
+        skills: [
+        { name: "Hugging Face", icon: SiIcons.SiHuggingface, color: "#FFD21E" },
+        { name: "FastAPI", icon: SiIcons.SiFastapi, color: "#009688" },
+        { name: "Git", icon: SiIcons.SiGit, color: "#F05032" },
+        { name: "GitHub", icon: SiIcons.SiGithub, color: "#181717" },
+        { name: "PyCharm", icon: SiIcons.SiPycharm, color: "#21D789" },
+        { name: "Spyder", icon: SiIcons.SiSpyderide, color: "#FF0000" },
+        { name: "VS Code", icon: SiIcons.SiVisualstudiocode, color: "#007ACC" },
+        { name: "Replit", icon: SiIcons.SiReplit, color: "#F26207" },
+      ],
+    },
+  ];
 
   return (
-    <section id="skills" className="py-20 bg-white/80 dark:bg-white/5 backdrop-blur-sm" ref={ref}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Section Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Skills & Expertise</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-blue-600 mx-auto"></div>
-          </div>
-
-          {/* Skills Grid - 4 columns for uniform layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {Object.entries(skills).map(([category, skillList], index) => {
-              const Icon = skillIcons[category] || Code;
-              return (
-                <motion.div
-                  key={category}
-                  initial={{ opacity: 0, y: 20, rotateX: -15 }}
-                  animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 20, rotateX: -15 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -10, scale: 1.03, rotateY: 5, rotateX: 5 }}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-xl card-hover border border-gray-200 dark:border-gray-700 h-full min-h-[300px] flex flex-col"
-                  style={{ transformStyle: 'preserve-3d' }}
-                >
-                  <div className="flex items-center gap-3 mb-4 flex-shrink-0">
-                    <motion.div
-                      className="p-3 bg-gradient-to-br from-purple-500 to-purple-500 rounded-xl shadow-lg"
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <Icon className="w-7 h-7 text-white" />
-                    </motion.div>
-                    <h3 className="text-xl font-bold text-gray-800 dark:text-white">
-                      {category}
-                    </h3>
-                  </div>
-                  <div className="flex flex-wrap gap-2 flex-grow content-start">
-                    {skillList.map((skill, idx) => (
-                      <motion.span
-                        key={idx}
-                        whileHover={{ scale: 1.1, y: -2 }}
-                        className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 text-sm font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-purple-500 dark:hover:border-purple-400 transition-all cursor-pointer"
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          
-        </motion.div>
+    <section
+      id="skills"
+      className="py-24 px-6 bg-[#111] text-gray-100 relative"
+    >
+      {/* Title */}
+      <div className="text-center mb-32">
+        <h2 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-700 mb-4">
+          Skills & Expertise
+        </h2>
+      
       </div>
+
+      {skillCategories.map((category, idx) => (
+        <div key={idx} className="mb-16">
+          <div className="max-w-5xl mx-auto px-6 md:px-0 flex flex-col md:flex-row items-start gap-6">
+            {/* Left vertical label + bar (vertical on md+, horizontal on small) */}
+            <div className="flex items-center md:flex-row md:items-center md:justify-start md:w-32">
+              {/* bar first (left) */}
+              <div className="w-1 h-24 md:h-40 bg-gradient-to-b from-purple-500 to-purple-700 rounded-sm mr-4 md:mr-4"></div>
+
+              {/* vertical label for md+ (to the right of the bar) */}
+              <h3
+                className="hidden md:block text-2xl font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-700 tracking-wide"
+                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+              >
+                {category.title}
+              </h3>
+
+              {/* horizontal label for small screens (shown to the right of the bar) */}
+              <h3 className="block md:hidden text-2xl font-semibold uppercase text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-700 tracking-wide">
+                {category.title}
+              </h3>
+            </div>
+
+            {/* Skills Grid (to the right of the label on md+) */}
+            <div className="flex-1">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-8 justify-items-center md:justify-items-start">
+            {category.skills.map(({ name, icon: Icon, color }, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-[#1a1a1a] hover:bg-[#222] border border-gray-700 rounded-xl p-6 shadow-lg flex flex-col items-center justify-center w-36 h-36 transition-all"
+              >
+                {Icon ? (
+                  <Icon className="w-10 h-10 mb-3" style={{ color }} />
+                ) : (
+                  <div className="w-10 h-10 mb-3 rounded-md bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white font-bold">
+                    {name.split(" ").map(s => s[0]).slice(0,2).join("")}
+                  </div>
+                )}
+                <p className="text-sm font-medium tracking-wide text-gray-200 text-center">
+                  {name}
+                </p>
+              </motion.div>
+            ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </section>
   );
-}
+};
