@@ -83,14 +83,6 @@ This site can be deployed to any static host (Vercel, Netlify, GitHub Pages, Clo
 - Replace Lottie files in `src/assets` (or `public/`) and update the import paths.
 - Tailwind: modify `tailwind.config.cjs` to change theme tokens or extend utilities.
 
-## Contributing
-
-If you'd like to contribute, open an issue or a pull request. Small improvements that are useful:
-
-- Add more project entries with live URLs and screenshots.
-- Improve accessibility and keyboard navigation.
-- Add tests and CI.
-
 Before submitting PRs, run and verify the dev server and ensure builds succeed:
 
 ```powershell
